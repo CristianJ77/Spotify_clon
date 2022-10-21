@@ -9,9 +9,9 @@ import { TrackModel } from '@core/models/tracks.model';
 export class MediaPlayerComponent implements OnInit {
   
   mockCover: TrackModel = {
-    cover:'https://i1.sndcdn.com/artworks-000247627460-1hqnjr-t500x500.jpg',
-    album:'Valentino Ft MTZ Manuel Turizo (Video Oficial)"',
-    name:'Bésame💋',
+    cover:'https://i.scdn.co/image/ab67616d0000b27345ca41b0d2352242c7c9d4bc',
+    album:'Gioli & Assia',
+    name:'BEBE (Oficial)',
     url: 'http://localhost/track.mp3',
     _id: 1
   }
