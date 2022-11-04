@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TrackModel } from '@core/models/tracks.model';
 import { TrackService } from '@modules/tracks/services/track.service';
+import { TracksModule } from '@modules/tracks/tracks.module';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -12,15 +13,19 @@ export class TracksPageComponent implements OnInit, OnDestroy {
 
   tracksTrending: Array<TrackModel> = []
   tracksRandom: Array<TrackModel> = []
-
   listObservers$: Array<Subscription> = []
 
   constructor(private trackService: TrackService) { }
 
   ngOnInit(): void {
-    this.trackService.getAllTracks$().
-    subscribe(response => {
-      console.log()
+    this.trackService.getAllTracks$()
+    .subscribe((response: TrackModel[]) =>  {
+      this.tracksTrending = response;
+    })
+
+    this.trackService.getAllRandom$()
+    .subscribe((response: TrackModel[]) => {
+      this.tracksRandom = response;
     })
   }
 
