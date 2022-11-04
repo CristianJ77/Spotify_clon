@@ -37,10 +37,14 @@ private skipById(listTracks: TrackModel[], id: number): Promise<TrackModel[]> {
 
  getAllRandom$(): Observable<any> {
   return this.http.get(`${this.URL}/tracks`)
-  .pipe(
-    mergeMap(({ data }: any) => this.skipById(data, 1)),
-  )
- }
+    .pipe(
+      mergeMap(({ data }: any) => this.skipById(data, 2)),
+      catchError((err) => {
+        const { status, statusText } = err;
+        return of([])
+      })
+    )
+}
  
 }
 
