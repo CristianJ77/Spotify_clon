@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { TrackModel } from '@core/models/tracks.model';
 import { SearchService } from '@modules/history/services/search.service';
 
@@ -10,7 +10,7 @@ import { SearchService } from '@modules/history/services/search.service';
   styleUrls: ['./history-page.component.css']
 })
 export class HistoryPageComponent implements OnInit {
-  listResults: TrackModel[] = []
+  listResults$: Observable<any> = of([])
 
   constructor(private searchService: SearchService) { }
 
@@ -20,9 +20,6 @@ export class HistoryPageComponent implements OnInit {
   receiveData(event: string): void {
     //TODO: agarras el termino y sabes que solo se ejecuta cuando tiene 3 caracters
     console.log('Estoy en el padre...', event);
-    this.searchService.searchTracks$(event)
-    .subscribe(({ data }) => {
-      this.listResults = data;
-    })
+    this.listResults$ = this.searchService.searchTracks$(event)
   }
 }
