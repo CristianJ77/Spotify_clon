@@ -13,16 +13,7 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
   listObservers$: Array<Subscription> = []
   state: string = 'paused'
 
-  mockCover: TrackModel = {
-    cover:'https://i1.sndcdn.com/artworks-000247627460-1hqnjr-t500x500.jpg',
-    album:'Valentino Ft MTZ Manuel Turizo (Video Oficial)"',
-    name:'Bésame💋',
-    url: 'http://localhost/track.mp3',
-    _id: 1
-  }
-
   constructor(public multimediaService: MultimediaService) { }
-
 
   ngOnInit(): void {
     const observer1$ = this.multimediaService.playerStatus$
